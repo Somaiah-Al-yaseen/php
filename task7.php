@@ -1,5 +1,10 @@
 <?php
 
-phpinfo (1) ;
-phpinfo(4) ;
+$text = "PHP Tutorial.";
+  
+
+$text = preg_replace('/(\b[a-z])/i', 
+'<span style="color:green;">\1</span>', $text);
+  
+echo $text
 ?>
