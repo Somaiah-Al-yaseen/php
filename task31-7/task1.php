@@ -1,4 +1,12 @@
 <?php
+echo nl2br("Task1 : 1.	Write a PHP script to: 
+
+a.	Convert the entered string to uppercase.
+b.	Convert the entered string to lowercase.
+c.	Make the first letter of the string uppercase.
+d.	Make the first letter of each word capitalized.
+
+") ;
 //all uppercase letters
 print(strtoupper("the quick brown fox jumps over the lazy dog."))."<br>";
 //all lowercase letters

@@ -8,6 +8,8 @@
 </head>
 <body>
 <?php
+echo nl2br("Task4 :Write a PHP script to get the client's IP address.
+") ;
 //whether ip is from share internet
 if (!empty($_SERVER['HTTP_CLIENT_IP']))   
   {

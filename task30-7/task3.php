@@ -9,6 +9,7 @@
 </head>
 <body>
 <form method='POST'>
+    <h3>Task3 :Create a simple HTML form and accept the users name and display the name through a PHP echo statement.</h3>
 <h2>Please input your name:</h2>
  <input type="text" name="name">
  <input type="submit" value="Submit Name">
