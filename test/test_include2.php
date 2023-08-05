@@ -1,3 +1,4 @@
 <?php 
-echo $user
+echo $user ;
+echo "this is file to include " ;
 ?>
