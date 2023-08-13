@@ -35,6 +35,8 @@ include("dbcon.php") ; ?>
                                       <th>Name</th>
                                       <th>Address</th>
                                       <th>Salary</th>
+                                      <th>Edit</th>
+                                      <th>Delete</th>
                                    </tr>
                                </thead>
                                <tbody>
@@ -43,15 +45,25 @@ include("dbcon.php") ; ?>
                                 $stm = $conn->prepare($query);
                                 $stm->execute() ;
 
-                                $result = $stm->fetchAll() ;
+
+                                $result = $stm->fetchAll(PDO::FETCH_OBJ) ;  // OR fetchAll(PDO::FETCH_ASSOC)  
+                                /////or another way 1-$stm->setFetchMode(PDO::FETCH_OBJ);  2-$result = $stm->fetchAll()
                                 if ($result){
                                   foreach($result as $row){
-                                    ?>
-                                        <tr>
-                                             <td><?= $row['id'];  ?></td>
-                                             <td><?= $row['Users_Name'];  ?></td>
-                                             <td><?= $row['Users_Address'];  ?></td>
-                                             <td><?= $row['Users_Salary'];  ?></td>
+                                    ?> 
+                                        <tr>                                           <!--when fetchAll(PDO::FETCH_ASSOC)  -->
+                                             <td><?= $row->id;  ?></td>                 <!--$row['id']; -->
+                                             <td><?= $row->Users_Name;  ?></td>              <!--['Users_Name']; -->
+                                             <td><?= $row->Users_Address;  ?></td>            <!--$row['Users_Address']; -->
+                                             <td><?= $row->Users_Salary;  ?></td>            <!--$row['Users_Salary']; -->
+                                             <td>
+                                                <a href="employees-edit.php?id=<?= $row->id; ?>" class="btn btn-primary">Edit</a>
+                                             </td>
+                                             <td>
+                                                <form action="code.php" method="post">
+                                                    <button type="submit" name="delete-employee" value="<?= $row->id; ?>" class="btn btn-danger ">Delete</button>
+                                                </form>
+                                             </td>
                                         </tr>
                                     <?php
                                     
