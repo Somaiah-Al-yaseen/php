@@ -1,4 +1,5 @@
-<?php session_start()  ; ?>
+<?php session_start() ;
+include("dbcon.php") ; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +17,9 @@
 
            <?php if (isset($_SESSION['message'])) :   ?>
            <h5 class="alert alert-success"><?= $_SESSION['message']  ?> </h5>
-           <?php endif ;  ?>
+           <?php 
+           unset($_SESSION['message']);
+           endif ;  ?>
 
                 <div class="card">
                    <div class="card-header">
@@ -25,7 +28,47 @@
                    </h3>
                    </div>   
                    <div class="card-body">
-                       
+                       <table class="table table-bordered table-striped">
+                               <thead>
+                                   <tr>
+                                      <th>ID</th>
+                                      <th>Name</th>
+                                      <th>Address</th>
+                                      <th>Salary</th>
+                                   </tr>
+                               </thead>
+                               <tbody>
+                                <?php
+                                $query = "SELECT * FROM employees" ;
+                                $stm = $conn->prepare($query);
+                                $stm->execute() ;
+
+                                $result = $stm->fetchAll() ;
+                                if ($result){
+                                  foreach($result as $row){
+                                    ?>
+                                        <tr>
+                                             <td><?= $row['id'];  ?></td>
+                                             <td><?= $row['Users_Name'];  ?></td>
+                                             <td><?= $row['Users_Address'];  ?></td>
+                                             <td><?= $row['Users_Salary'];  ?></td>
+                                        </tr>
+                                    <?php
+                                    
+                                  }
+                                } else{
+                                    ?>
+                                    <tr>
+                                        <td colspan="4">No Record Found</td>
+                                    </tr>
+                                    <?php
+                                }
+                                ?>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                               </tbody>
+                       </table>
                    </div>
                 </div>
             </div>
